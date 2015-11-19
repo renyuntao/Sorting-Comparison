@@ -114,3 +114,21 @@ void quicksort_variation(int a[],int lo,int hi)
 		quicksort(a,i,hi);
 }
 
+/*
+ * Insert Sort
+ *
+ */
+void insertsort(int arr[],int length)
+{
+	for(int i = 1; i < length; ++i)
+	{
+		int tmp = arr[i];
+		int j = i - 1;
+		while(j > -1 && arr[j] > tmp)
+		{
+			arr[j+1] = arr[j];
+			--j;
+		}
+		arr[++j] = tmp;
+	}
+}

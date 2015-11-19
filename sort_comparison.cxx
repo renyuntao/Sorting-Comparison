@@ -4,7 +4,7 @@
 #include<tuple>
 #include<random>
 #include"AllSort.h"
-#define ITEM_NUM 4
+#define ITEM_NUM 5
 #define MAX_RAND_NUM 5000000
 using std::cout;
 using std::cin;
@@ -21,7 +21,8 @@ void showInfo()
 	cout<<"   1. Bubble Sort\n";
 	cout<<"   2. Quick Sort\n";
 	cout<<"   3. Quick Sort Variation(for data have many duplicate element)\n";
-	cout<<"   10. Select All Above\n\n";
+	cout<<"   4. Insert Sort\n";
+	cout<<"   5. Select All Above\n\n";
 	cout<<"Input you selection and separated by space [1-"<<ITEM_NUM<<"]: ";
 }
 
@@ -153,6 +154,15 @@ int main()
 			end = clock();
 
 			cout<<"Quick Sort Variation run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+			std::copy(randArr,randArr+numberOfData,copy_arr);
+
+			// Insert Sort
+			start = clock();
+			insertsort(copy_arr,numberOfData);
+			end = clock();
+
+			cout<<"Insert Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 		}
 
 		// Should call more than one sort function
@@ -191,6 +201,13 @@ int main()
 						end = clock();
 						cout<<"Quick Sort Variation run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 						break;
+					// Insert Sort
+					case 4:
+						start = clock();
+						insertsort(copy_arr,numberOfData);
+						end = clock();
+						cout<<"Insert Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+						break;
 				}
 			}
 		}
@@ -226,6 +243,14 @@ int main()
 				quicksort_variation(randArr,0,numberOfData-1);
 				end = clock();
 				cout<<"Quick Sort Variation run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+				break;
+			
+			// Insert Sort
+			case 4:
+				start = clock();
+				insertsort(randArr,numberOfData);
+				end = clock();
+				cout<<"Insert Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 				break;
 		}
 	}

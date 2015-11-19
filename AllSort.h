@@ -10,4 +10,7 @@ void quicksort(int arr[],int low,int high);
 // Quick Sort Variation
 void quicksort_variation(int arr[],int low,int high);
 
+// Insert Sort
+void insertsort(int arr[],int length);
+
 #endif
