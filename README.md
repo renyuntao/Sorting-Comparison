@@ -1,5 +1,5 @@
 # Sorting Comparison
-Make comparison of **Bubble Sort**, **Quick Sort**, **Quick Sort Variation**.        
+Make comparison of **Bubble Sort**, **Quick Sort**, **Quick Sort Variation** , **Shell Sort**.        
 You can run the program as        
 ```    
 $ make      
