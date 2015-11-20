@@ -4,7 +4,7 @@
 #include<tuple>
 #include<random>
 #include"AllSort.h"
-#define ITEM_NUM 5
+#define ITEM_NUM 6
 #define MAX_RAND_NUM 5000000
 using std::cout;
 using std::cin;
@@ -22,7 +22,8 @@ void showInfo()
 	cout<<"   2. Quick Sort\n";
 	cout<<"   3. Quick Sort Variation(for data have many duplicate element)\n";
 	cout<<"   4. Insert Sort\n";
-	cout<<"   5. Select All Above\n\n";
+	cout<<"   5. Shell Sort\n";
+	cout<<"   6. Select All Above\n\n";
 	cout<<"Input you selection and separated by space [1-"<<ITEM_NUM<<"]: ";
 }
 
@@ -87,7 +88,7 @@ std::tuple<int,bool> getInput(int input[ITEM_NUM],int &numberOfData,int &seed)
 	cout<<"\n******************************************************************\n";
 	cout<<"Now please input the seed for generate the random:";
 	cin>>seed;
-
+	cout<<"\n$$$$$$$$$$$$$$$$$$$$ Result $$$$$$$$$$$$$$$$$$$$$\n\n";
 	return std::make_pair(selectItemNum,selectAll);
 }
 
@@ -133,7 +134,6 @@ int main()
 			clock_t start = clock();
 			BubbleSort(copy_arr,numberOfData);
 			clock_t end = clock();
-
 			cout<<"Bubble Sort run time: "<<float(end-start)/CLOCKS_PER_SEC<<endl;
 
 			std::copy(randArr,randArr+numberOfData,copy_arr);
@@ -142,7 +142,6 @@ int main()
 			start = clock();
 			quicksort(copy_arr,0,numberOfData-1);
 			end = clock();
-
 			cout<<"QuickSort run time: "<<float(end-start)/CLOCKS_PER_SEC<<endl;
 
 			std::copy(randArr,randArr+numberOfData,copy_arr);
@@ -152,7 +151,6 @@ int main()
 			start = clock();
 			quicksort_variation(copy_arr,0,numberOfData-1);
 			end = clock();
-
 			cout<<"Quick Sort Variation run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 
 			std::copy(randArr,randArr+numberOfData,copy_arr);
@@ -161,8 +159,15 @@ int main()
 			start = clock();
 			insertsort(copy_arr,numberOfData);
 			end = clock();
-
 			cout<<"Insert Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+			std::copy(randArr,randArr+numberOfData,copy_arr);
+
+			// Shell Sort
+			start = clock();
+			shellsort(randArr,numberOfData);
+			end = clock();
+			cout<<"Shell Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 		}
 
 		// Should call more than one sort function
@@ -201,12 +206,21 @@ int main()
 						end = clock();
 						cout<<"Quick Sort Variation run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 						break;
+
 					// Insert Sort
 					case 4:
 						start = clock();
 						insertsort(copy_arr,numberOfData);
 						end = clock();
 						cout<<"Insert Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+						break;
+
+					// Shell Sort
+					case 5:
+						start = clock();
+						shellsort(randArr,numberOfData);
+						end = clock();
+						cout<<"Shell Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 						break;
 				}
 			}
@@ -252,9 +266,18 @@ int main()
 				end = clock();
 				cout<<"Insert Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 				break;
+
+			// Shell Sort
+			case 5:
+				start = clock();
+				shellsort(randArr,numberOfData);
+				end = clock();
+				cout<<"Shell Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+				break;
 		}
 	}
 
+	cout<<"\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n\n";
 
 	delete [] randArr;
 

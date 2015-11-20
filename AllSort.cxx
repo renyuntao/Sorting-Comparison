@@ -132,3 +132,31 @@ void insertsort(int arr[],int length)
 		arr[++j] = tmp;
 	}
 }
+
+/*
+ * Shell Sort
+ *
+ */
+void shellsort(int arr[],int length)
+{
+	int span = length >> 1;
+	while(span > 0)
+	{
+		for(int k = 0; k < span; ++k)
+		{
+			// Insert Sort
+			for(int i = k; i < length - span; i += span)
+			{
+				int tmp = arr[i+span];
+				int j = i;
+				while(j > -1 && arr[j] > tmp)
+				{
+					arr[j+span] = arr[j];
+					j -= span;
+				}
+				arr[j+span] = tmp;
+			}
+		}
+		span >>= 1;
+	}
+}

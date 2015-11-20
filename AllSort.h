@@ -13,4 +13,6 @@ void quicksort_variation(int arr[],int low,int high);
 // Insert Sort
 void insertsort(int arr[],int length);
 
+// Shell Sort
+void shellsort(int arr[],int length);
 #endif
