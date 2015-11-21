@@ -160,3 +160,28 @@ void shellsort(int arr[],int length)
 		span >>= 1;
 	}
 }
+
+/*
+ * Select Sort
+ *
+ */
+void selectsort(int arr[],int length)
+{
+	if(!arr || length < 2)
+		return;
+	for(int i = 0; i < length - 1; ++i)
+	{
+		int small = i;
+		for(int j = i + 1; j < length; ++j)
+		{
+			if(arr[j] < arr[small])
+				small = j;
+		}
+		if(small != i)
+		{
+			int tmp = arr[i];
+			arr[i] = arr[small];
+			arr[small] = tmp;
+		}
+	}
+}

@@ -15,4 +15,7 @@ void insertsort(int arr[],int length);
 
 // Shell Sort
 void shellsort(int arr[],int length);
+
+// Select Sort
+void selectsort(int arr[],int length);
 #endif
