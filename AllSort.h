@@ -18,4 +18,7 @@ void shellsort(int arr[],int length);
 
 // Select Sort
 void selectsort(int arr[],int length);
+
+// Heap Sort
+void heapsort(int arr[],int length);
 #endif
