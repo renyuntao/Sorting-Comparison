@@ -21,4 +21,7 @@ void selectsort(int arr[],int length);
 
 // Heap Sort
 void heapsort(int arr[],int length);
+
+// Merge Sort
+void mergesort(int arr[],int length);
 #endif

@@ -4,7 +4,7 @@
 #include<tuple>
 #include<random>
 #include"AllSort.h"
-#define ITEM_NUM 8
+#define ITEM_NUM 9
 #define MAX_RAND_NUM 5000000
 using std::cout;
 using std::cin;
@@ -25,7 +25,8 @@ void showInfo()
 	cout<<"   5. Shell Sort\n";
 	cout<<"   6. Select Sort\n";
 	cout<<"   7. Heap Sort\n";
-	cout<<"   8. Select All Above\n\n";
+	cout<<"   8. Merge Sort\n";
+	cout<<"   9. Select All Above\n\n";
 	cout<<"Input you selection and separated by space [1-"<<ITEM_NUM<<"]: ";
 }
 
@@ -186,6 +187,14 @@ int main()
 			heapsort(copy_arr,numberOfData);
 			end = clock();
 			cout<<"Heap Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+			std::copy(randArr,randArr+numberOfData,copy_arr);
+
+			// Merge Sort
+			start = clock();
+			mergesort(copy_arr,numberOfData);
+			end = clock();
+			cout<<"Merge Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 		}
 
 		// Should call more than one sort function
@@ -254,6 +263,13 @@ int main()
 						heapsort(copy_arr,numberOfData);
 						end = clock();
 						cout<<"Heap Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+					// Merge Sort
+					case 8:
+						start = clock();
+						mergesort(copy_arr,numberOfData);
+						end = clock();
+						cout<<"Merge Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 				}
 			}
 		}
@@ -320,6 +336,13 @@ int main()
 				heapsort(randArr,numberOfData);
 				end = clock();
 				cout<<"Heap Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+			// Merge Sort
+			case 8:
+				start = clock();
+				mergesort(randArr,numberOfData);
+				end = clock();
+				cout<<"Merge Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 		}
 	}
 

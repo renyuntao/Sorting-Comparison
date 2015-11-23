@@ -190,7 +190,7 @@ void selectsort(int arr[],int length)
  * Heap Sort
  *
  */
-// Create Max Heap
+// #1 Create Max Heap
 void createMaxHeap(int arr[],int length,int root)
 {
 	int i = root;
@@ -225,7 +225,7 @@ void createMaxHeap(int arr[],int length,int root)
 	arr[i] = tmp;
 }
 
-// Initial
+// #2 Initial
 void InitMaxHeap(int arr[],int length)
 {
 	for(int k = (length-1)/2; k >= 0; --k)
@@ -234,7 +234,7 @@ void InitMaxHeap(int arr[],int length)
 	}
 }
 
-// Heap Sort
+// #3 Heap Sort
 void heapsort(int arr[],int length)
 {
 	InitMaxHeap(arr,length);
@@ -248,4 +248,81 @@ void heapsort(int arr[],int length)
 		// adjust the root and keep the arr is a Max Heap
 		createMaxHeap(arr,i,0);
 	}
+}
+
+/*
+ * Merge Sort
+ *
+ */
+// #1 Merge
+void merge(int arr[],int length,int tmp[],int k)
+{
+	int low1,high1,low2,high2;
+
+	low1 = 0;
+	int m = low1;
+
+
+	// Can be divided into two groups
+	while(low1+k <= length-1)
+	{
+		low2 = low1 + k;
+		high1 = low2 - 1;
+		high2 = (low2+k-1 <= length-1) ? low2+k-1 : length-1;
+
+		int i,j;
+		for(i = low1,j = low2; i <= high1 && j <= high2; ++m)
+		{
+			if(arr[i] < arr[j])
+			{
+				tmp[m] = arr[i];
+				++i;
+			}
+			else
+			{
+				tmp[m] = arr[j];
+				++j;
+			}
+		}
+
+		while(i <= high1)
+		{
+			tmp[m] = arr[i];
+			++i;
+			++m;
+		}
+
+		while(j <= high2)
+		{
+			tmp[m] = arr[j];
+			++j;
+			++m;
+		}
+		
+		low1 = high2 + 1;
+	}
+
+	// Only have one groups
+	for(int i = low1; i < length; ++i)
+	{
+		tmp[m] = arr[i];
+		++m;
+	}
+}
+
+// #2 merge sort
+void mergesort(int arr[],int length)
+{
+	int *tmp = new int[length];
+
+	int k = 1;
+	while(k < length)
+	{
+		merge(arr,length,tmp,k);
+		for(int i = 0; i < length; ++i)
+			arr[i] = tmp[i];
+		k *= 2;
+	}
+
+	delete tmp;
 }
