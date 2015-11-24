@@ -4,7 +4,12 @@
 #include<tuple>
 #include<random>
 #include"AllSort.h"
-#define ITEM_NUM 9
+#define ITEM_NUM 10
+#define GENERATE_MAX_RAND_NUM 10000
+// Macro `MAX_LEN_OF_RAND_NUM` is used for RadixSort,
+// when macro `GENERATE_MAX_RAND_NUM` is change,
+// this macro should change also.
+#define MAX_LEN_OF_RAND_NUM 5   
 #define MAX_RAND_NUM 5000000
 using std::cout;
 using std::cin;
@@ -26,7 +31,8 @@ void showInfo()
 	cout<<"   6. Select Sort\n";
 	cout<<"   7. Heap Sort\n";
 	cout<<"   8. Merge Sort\n";
-	cout<<"   9. Select All Above\n\n";
+	cout<<"   9. Radix Sort\n";
+	cout<<"   10. Select All Above\n\n";
 	cout<<"Input you selection and separated by space [1-"<<ITEM_NUM<<"]: ";
 }
 
@@ -101,7 +107,7 @@ std::tuple<int,bool> getInput(int input[ITEM_NUM],int &numberOfData,int &seed)
  */
 void generateRandData(int *randArr,int size,int seed)
 {
-	std::uniform_int_distribution<unsigned> u(0,10000);
+	std::uniform_int_distribution<unsigned> u(0,GENERATE_MAX_RAND_NUM);
 	std::default_random_engine e(seed);
 	for(int i = 0; i < size; ++i)
 		randArr[i] = u(e);
@@ -195,6 +201,14 @@ int main()
 			mergesort(copy_arr,numberOfData);
 			end = clock();
 			cout<<"Merge Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+			std::copy(randArr,randArr+numberOfData,copy_arr);
+
+			// Radix Sort
+			start = clock();
+			radixsort(copy_arr,numberOfData,10,MAX_LEN_OF_RAND_NUM);
+			end = clock();
+			cout<<"Radix Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 		}
 
 		// Should call more than one sort function
@@ -270,6 +284,13 @@ int main()
 						mergesort(copy_arr,numberOfData);
 						end = clock();
 						cout<<"Merge Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+					// Radix Sort
+					case 9:
+						start = clock();
+						radixsort(copy_arr,numberOfData,10,MAX_LEN_OF_RAND_NUM);
+						end = clock();
+						cout<<"Radix Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 				}
 			}
 		}
@@ -343,6 +364,13 @@ int main()
 				mergesort(randArr,numberOfData);
 				end = clock();
 				cout<<"Merge Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
+
+			// Radix Sort
+			case 9:
+				start = clock();
+				radixsort(randArr,numberOfData,10,MAX_LEN_OF_RAND_NUM);
+				end = clock();
+				cout<<"Radix Sort run time: "<<static_cast<double>(end-start)/CLOCKS_PER_SEC<<endl;
 		}
 	}
 

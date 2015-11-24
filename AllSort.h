@@ -24,4 +24,7 @@ void heapsort(int arr[],int length);
 
 // Merge Sort
 void mergesort(int arr[],int length);
+
+// Radix Sort
+void radixsort(int arr[],int length,int d,int m);
 #endif
