@@ -64,10 +64,8 @@ void quicksort(int arr[],int low,int high)
 		arr[j] = pivot;
 
 		// recursion
-		if(low < j)
-			quicksort(arr,low,j-1);
-		if(i < high)
-			quicksort(arr,j+1,high);
+		quicksort(arr,low,j-1);
+		quicksort(arr,j+1,high);
 	}
 }
 
